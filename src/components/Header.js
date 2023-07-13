@@ -3,8 +3,9 @@ import { useFormik } from 'formik';
 import React, { useState } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import * as Yup from 'yup'
+import Example from './Sidebar';
 
-const Header = () => {
+const Header = ({ generateDrawer }) => {
 
   const nav = useNavigate();
 
@@ -15,7 +16,10 @@ const Header = () => {
   const [showSubMenu, setSubMenu] = useState(false);
 
 
-
+  const handleButtonClick = () => {
+    setShow(!show);
+    generateDrawer();
+  };
 
 
   const handleMouseEnter = (link) => {
@@ -52,28 +56,33 @@ const Header = () => {
 
 
   return (
-    <header className='bg-[#032541] text-white flex justify-between px-4 py-2 items-baseline pt-5'>
+    <header className='bg-[#032541] text-white flex justify-between px-4 py-2 items-center pt-5'>
       <div>
-        <NavLink to="/"><h1 className='text-3xl font-bold mb-2 mr-5'>Movies</h1></NavLink>
+        <NavLink to="/"><h1 className='text-4xl font-bold mb-2 mr-5'>Movies</h1></NavLink>
 
 
 
-        {show && <nav className='hidden sm:flex flex-col space-y-2'>
 
-          <p>Movies</p>
-          <p>Tv Shows</p>
-        </nav>
-        }
 
 
       </div>
 
-
-      <button onClick={() => setShow(!show)}>
+      <div>
+        {formik.errors.query && formik.touched.query && <h1 className='text-red-500'>{formik.errors.query}</h1>}
+        <form onSubmit={formik.handleSubmit} className='hidden sm:flex md:flex'>
+          <input type="text"
+            name='query'
+            onChange={formik.handleChange}
+            value={formik.values.query}
+            className='w-[100px] h-[40px] p-1  py-2 px-3 border border-gray-300 rounded-l-md focus:outline-none text-black' />
+          <button type="submit" className='bg-blue-500 w-[70px] rounded-r-md focus:outline-none'>Search</button>
+        </form>
+      </div>
+      <button onClick={handleButtonClick}>
         {show ?
 
-          <i className="fa-solid fa-xmark hidden sm:flex"></i> :
-          <i className="fa-solid fa-bars hidden sm:flex" ></i>
+          <i className="fa-solid fa-xmark fa-2xl hidden sm:flex"></i> :
+          <i className="fa-solid fa-bars fa-2xl hidden sm:flex" ></i>
 
         }</button>
 
@@ -107,7 +116,7 @@ const Header = () => {
 
               type='search'
               color='white'
-              label='Type a movie to search'
+              label='Type a movie or tv show to search'
               name='query'
               onChange={formik.handleChange}
               value={formik.values.query}
