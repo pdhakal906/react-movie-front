@@ -17,7 +17,7 @@ const RootLayout = () => {
     <>
       <Header generateDrawer={generateDrawer} />
       {show && <Sidebar />}
-      <div className='bg-red-500 min-h-screen'>
+      <div className='sm:bg-red-500 min-h-screen'>
 
         <Outlet />
       </div>
