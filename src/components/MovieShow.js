@@ -25,7 +25,7 @@ const MovieShow = ({ data, isLoading, isError, error }) => {
 
     <div>
       <h1 className='text-2xl font-bold p-5'>Now playing</h1>
-      <div className='grid grid-cols-5 gap-5 sm:grid-cols-1 md:grid-cols-1 p-5 bg-white'>
+      <div className='grid grid-cols-5 gap-5 sm:grid-cols-1 md:grid-cols-1 p-5'>
         {data?.results?.map((movie) => {
           return <div key={movie.id} className='w-[200px] md:w-[100%] sm:w-[100%] rounded-md cursor-pointer hover:scale-105 transition-all delay-75 shadow-lg' onClick={() => nav(`/movie/detail/${movie.id}`)}>
             {movie.poster_path != null ?
