@@ -6,7 +6,7 @@ const Footer = () => {
     <div>
       <footer className='bg-[#032541] h-[90px] text-white flex justify-between px-4 py-2 mt-5 items-center pt-5'>
         <div>
-          <p> &copy; TheMovieDB</p>
+          <p> Made By Pratik Dhakal</p>
 
         </div>
 
